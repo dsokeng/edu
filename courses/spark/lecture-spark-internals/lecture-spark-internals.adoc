@@ -3,6 +3,7 @@
 
 = Spark architecture and internals
 
+ifndef::env-github[]
 ++++
 <style>
   .imageblock > .title {
@@ -10,8 +11,9 @@
   }
 </style>
 ++++
+endif::[]
 
-.Warm-up
+Warm-up::
 Try to link the terms on diagram:
 Job, ClusterManager, Worker Node, HDFS, SparkContext, Task, Yarn, Spark, Driver program, Stage,
 Dataset, Executor, SparkSession, DataFrame, rdd, Action, Hadoop.
@@ -20,7 +22,7 @@ Dataset, Executor, SparkSession, DataFrame, rdd, Action, Hadoop.
 
 image::https://spark.apache.org/docs/latest/img/cluster-overview.png["Cluster Architecture", align="center", link=https://spark.apache.org/docs/latest/cluster-overview.html]
 
-.Practice
+Practice::
 What is the difference between `messages.foreach(println)` and `messages.collect().foreach(println)`?
 Is there an issue with the later one?
 
@@ -80,8 +82,7 @@ image::./materials/spark-client-vs-cluster-modes.png[align="center"]
 .Resilient Distributed dataset
 image::./materials/rdd.png[align="center"]
 
-.Building RDDs
-
+Building RDDs::
 * Parallelize local collection `val rdd = sc.parallelize(Array(1, 2, 3))`
 * External sources `val rdd = sc.textFile(hdfs_path)`
 * Transformation `val rdd2 = rdd1.map(_.split(“ ”))`
@@ -124,7 +125,7 @@ image::./materials/rdd-lineage.png[align="center"]
 .http://127.0.0.1:4041/jobs/job/?id=...
 image::./materials/rdd-lineage-example.png[align="center"]
 
-.Practice - is the code ok?
+Practice - is the code ok?::
 [source]
 ----
 val rdd = loadData()
@@ -136,11 +137,11 @@ storeResult(result)
 
 ==== Narrow vs Wide dependencies
 
-.Narrow vs Wide dependecies
-image::./materials/rdd-narrow-vs-wide-dependecies.png[align="center"]
+.Narrow vs Wide dependencies
+image::./materials/rdd-narrow-vs-wide-dependecies.png[align="center", width=800]
 
 .Practice - How will partition dependencies look like?
-image::./materials/rdd-narrow-vs-wide-dependecy-examples.png[align="center"]
+image::./materials/rdd-lineage-exercise.png[align="center"]
 
 == Spark execution model
 
@@ -155,12 +156,12 @@ NOTE: How do stages correlate with partitions?
 image::./materials/spark-execution-model-tasks.png[align="center"]
 
 .Practice - what are the stage boundaries?
-image::./materials/stage-exercise.png[align="center"]
+image::materials/rdd-lineage-exercise.png[align="center"]
 
 === Scheduling process rehearsal
 
 .Scheduling process
-image::./materials/scheduling-process.png[align="center"]
+image::./materials/scheduling-process.png[align="center", width=800]
 
 .Process example
 [source]
@@ -174,14 +175,13 @@ val result = spark.sparkContext.textFile("src/main/resources/data/names")
 ----
 
 .Scheduling process - RDD
-image::materials/scheduling-process-rdd.png[align="center"]
+image::materials/scheduling-process-rdd.png[align="center", width=200]
 
 .Scheduling process - Stages
-image::./materials/scheduling-process-stages.png[align="center"]
+image::./materials/scheduling-process-stages.png[align="center", width=800]
 
 .Scheduling process - Tasks
-image::./materials/scheduling-process-tasks.png[align="center"]
-
+image::./materials/scheduling-process-tasks.png[align="center", width=800]
 
 == Practice point
 
@@ -229,7 +229,7 @@ val result = users
 == Fault tolerance
 
 .Example of a problem
-image::./materials/fault-tolerance-problem.png[align="center"]
+image::./materials/fault-tolerance-problem.png[align="center", width=500]
 
 .Recovery process in action
-image::./materials/fault-tolerance-recovery.png[align="center"]
+image::./materials/fault-tolerance-recovery.png[align="center", width=500]
