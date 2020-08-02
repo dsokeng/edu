@@ -3,3 +3,4 @@
 == Apache Spark
 
 * link:./courses/spark/lecture-spark-internals/lecture-spark-internals.adoc[Spark internals]
+* link:./courses/spark/lecture-spark-datasources/lecture-spark-datasources.adoc[Spark data sources]
