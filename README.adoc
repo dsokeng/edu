@@ -4,3 +4,4 @@
 
 * link:./courses/spark/lecture-spark-internals/lecture-spark-internals.adoc[Spark internals]
 * link:./courses/spark/lecture-spark-datasources/lecture-spark-datasources.adoc[Spark data sources]
+* link:./courses/spark/lecture-spark-performance/lecture-spark-performance.adoc[Spark performance]
